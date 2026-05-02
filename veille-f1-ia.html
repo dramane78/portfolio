@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - IA et Big Data en Formule 1 | Barry Dramane</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cyan: #08f3ff;
+            --dark-bg: #06121c;
+            --card-bg: rgba(10, 20, 40, 0.85);
+            --accent: #667eea;
+            --glow: 0 0 20px rgba(8, 243, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.8;
+            color: #ffffff;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(8, 243, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(8, 243, 255, 0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(60px); }
+        .orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(102,126,234,0.12), transparent 70%); top: -100px; right: -100px; animation: floatOrb 8s ease-in-out infinite; }
+        .orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(8,243,255,0.08), transparent 70%); bottom: 200px; left: -80px; animation: floatOrb 11s ease-in-out infinite reverse; }
+
+        @keyframes floatOrb {
+            0%,100% { transform: translate(0,0); }
+            33% { transform: translate(-20px,30px); }
+            66% { transform: translate(15px,-20px); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(6,18,28,0.92);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(8,243,255,0.15);
+            padding-right: 24px;
+        }
+
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .nav-link { font-family: 'Space Mono', monospace; color: #8ab; font-size: 0.75rem; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
+
+        .nav-link:hover { color: var(--cyan); }
+
+        /* Header */
+        .header {
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .header-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 40%, var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .header-desc { color: #8ab; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Sections */
+        .section {
+            padding: 40px 20px;
+            background: rgba(6, 17, 34, 0.6);
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid rgba(8, 243, 255, 0.1);
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .section-number { font-family: 'Space Mono', monospace; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon { font-size: 1.5rem; }
+
+        .subsection {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(8, 243, 255, 0.04);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            animation: slideIn 0.6s ease both;
+        }
+
+        .subsection h3 {
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .subsection ul { margin-left: 1.5rem; }
+
+        .subsection li {
+            margin-bottom: 0.8rem;
+            color: #c8d8e8;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--cyan);
+            font-weight: 600;
+            padding: 2px 6px;
+            background: rgba(8, 243, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .arrow { color: var(--accent); font-weight: 700; }
+
+        /* Sources */
+        .sources-section {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .sources-section h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .sources-list { list-style: none; }
+
+        .sources-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sources-list a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .sources-list a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(4, 10, 18, 0.95);
+            border-top: 1px solid rgba(8, 243, 255, 0.1);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 4px;
+            color: var(--accent);
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section { padding: 1.5rem; }
+            .subsection { padding: 1rem; }
+            .section-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-link back-btn">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-tag">📚 Veille Technologique</div>
+            <h1 class="header-title">L'Intelligence Artificielle et le Big Data en Formule 1</h1>
+            <p class="header-desc">Découvrez comment l'IA et le Big Data transforment le sport automobile : analyse de données massives, optimisation des performances et stratégies en temps réel.</p>
+        </div>
+    </div>
+
+    <!-- Problématique -->
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🎯</span> Problématique</h2>
+            <p style="font-size: 1.1rem; color: #a8bcd0; font-style: italic;">Comment l'intelligence artificielle et le Big Data permettent-ils d'optimiser les performances en Formule 1 ?</p>
+        </div>
+
+        <!-- Définition -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📌</span> Définition</h2>
+            <div class="subsection">
+                <h3>Intelligence Artificielle (IA)</h3>
+                <p style="color: #c8d8e8;">Systèmes capables d'<span class="highlight">analyser des données</span> et d'<span class="highlight">aider à la prise de décision</span> automatiquement en temps réel.</p>
+            </div>
+            <div class="subsection">
+                <h3>Big Data</h3>
+                <p style="color: #c8d8e8;"><span class="highlight">Exploitation de grandes quantités de données</span> collectées en temps réel pour en extraire de la valeur et des insights.</p>
+            </div>
+        </div>
+
+        <!-- Collecte de Données -->
+        <div class="section">
+            <div class="section-number">⚙️ 1. Collecte Massive de Données</div>
+            <h2 class="section-title"><span class="icon">📡</span> Les Voitures de F1 : Des Machines Intelligentes</h2>
+
+            <p style="color: #c8d8e8; margin-bottom: 1.5rem;">Les voitures de Formule 1 sont équipées de <span class="highlight">plus de 300 capteurs</span> qui collectent une quantité impressionnante de données à chaque fraction de seconde.</p>
+
+            <div class="subsection">
+                <h3><i class="fas fa-tachometer-alt"></i> Données Collectées</h3>
+                <ul>
+                    <li><span class="highlight">Vitesse</span> - en temps réel sur chaque portion de circuit</li>
+                    <li><span class="highlight">Température des pneus</span> - crucial pour l'usure et la performance</li>
+                    <li><span class="highlight">Pression des pneus</span> - ajustée selon les conditions</li>
+                    <li><span class="highlight">Performance moteur</span> - puissance, consommation de carburant</li>
+                    <li><span class="highlight">Données aérodynamiques</span> - force d'appui, traînée</li>
+                    <li><span class="highlight">Position et accélération</span> - en 3D sur le circuit</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3><i class="fas fa-building"></i> Exemple d'Écurie Pionnière</h3>
+                <p style="color: #c8d8e8;"><span class="highlight">Mercedes-AMG Petronas Formula One Team</span> - Leaders en innovation technologique et traitement des données</p>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> Ces données sont <span class="highlight">envoyées en temps réel</span> aux ingénieurs pendant la course via des liaisons satellites
+            </p>
+        </div>
+
+        <!-- Utilisation de l'IA -->
+        <div class="section">
+            <div class="section-number">🧠 2. Utilisation de l'IA en Course</div>
+            <h2 class="section-title"><span class="icon">⚡</span> Décisions en Millisecondes</h2>
+
+            <p style="color: #c8d8e8; margin-bottom: 1.5rem;">L'IA permet aux écuries de traiter des millions de données et de prendre des décisions optimales en quelques secondes.</p>
+
+            <div class="subsection">
+                <h3><i class="fas fa-brain"></i> Capacités de l'IA en F1</h3>
+                <ul>
+                    <li><span class="highlight">Analyser les données en direct</span> - traitement de flux massifs instantanément</li>
+                    <li><span class="highlight">Prévoir les stratégies</span> - moment idéal pour les arrêts aux stands</li>
+                    <li><span class="highlight">Simuler des scénarios de course</span> - "Et si nous changeons les pneus maintenant ?"</li>
+                    <li><span class="highlight">Optimiser le rendement carburant</span> - meilleure gestion de l'essence restante</li>
+                    <li><span class="highlight">Prédire l'usure des pneus</span> - anticiper les dégradations</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3><i class="fas fa-handshake"></i> Partenariats Technologiques</h3>
+                <p style="color: #c8d8e8;"><span class="highlight">Oracle et Red Bull Racing</span> - Partenariat stratégique pour améliorer les décisions tactiques et l'analyse prédictive en course</p>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> La différence entre la victoire et la défaite peut être due à une <span class="highlight">décision IA en temps réel</span>
+            </p>
+        </div>
+
+        <!-- Optimisation des Performances -->
+        <div class="section">
+            <div class="section-number">📊 3. Optimisation des Performances</div>
+            <h2 class="section-title"><span class="icon">🏁</span> Millièmes de Seconde en Plus</h2>
+
+            <p style="color: #c8d8e8; margin-bottom: 1.5rem;">En Formule 1, chaque milliseconde compte. L'IA aide à optimiser tous les aspects pour gagner quelques millièmes.</p>
+
+            <div class="subsection">
+                <h3><i class="fas fa-wind"></i> Aérodynamisme</h3>
+                <ul>
+                    <li>Optimisation de la géométrie de la voiture</li>
+                    <li>Ajustement de l'aileron selon le circuit et les conditions</li>
+                    <li>Simulation en soufflerie numérique grâce à l'IA</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3><i class="fas fa-wrench"></i> Réglage des Voitures</h3>
+                <ul>
+                    <li>Suspension optimale selon la piste</li>
+                    <li>Équilibre frein/moteur ajusté en temps réel</li>
+                    <li>Pressions des pneus adaptées aux conditions météo</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3><i class="fas fa-user"></i> Analyse du Comportement des Pilotes</h3>
+                <ul>
+                    <li>Reconnaissance des patterns de conduite optimaux</li>
+                    <li>Comparaison des deux pilotes de l'écurie</li>
+                    <li>Recommandations personnalisées en direct</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> L'objectif : gagner <span class="highlight">quelques centièmes de secondes</span>, ce qui est <span class="highlight">crucial en F1</span>
+            </p>
+        </div>
+
+        <!-- Limites et Enjeux -->
+        <div class="section">
+            <div class="section-number">⚠️ 4. Limites et Enjeux</div>
+            <h2 class="section-title"><span class="icon">🚨</span> Défis Majeurs</h2>
+
+            <div class="subsection" style="border-left-color: var(--cyan);">
+                <h3><i class="fas fa-money-bill"></i> Enjeu Économique</h3>
+                <p>💰 <span class="highlight">Coûts très élevés</span> - Infrastructure, serveurs, experts en IA</p>
+                <p style="margin-top: 0.5rem;">⚖️ <span class="highlight">Inégalités entre écuries</span> - Les grandes écuries (Mercedes, Red Bull) ont plus de ressources</p>
+            </div>
+
+            <div class="subsection" style="border-left-color: var(--accent);">
+                <h3><i class="fas fa-robot"></i> Enjeu Technologique</h3>
+                <p>⚙️ <span class="highlight">Dépendance aux technologies</span> - Risque de panne système pendant la course</p>
+                <p style="margin-top: 0.5rem;">📋 <span class="highlight">Réglementation stricte imposée par la FIA</span> - Limitations pour limiter les avantages technologiques</p>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🧩</span> Conclusion</h2>
+            <div style="padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(8, 243, 255, 0.1)); border-radius: 8px; border: 1px solid rgba(8, 243, 255, 0.2);">
+                <p style="margin-bottom: 1rem; color: #c8d8e8;">✅ L'IA et le Big Data sont devenus <span class="highlight">indispensables</span> en Formule 1 :</p>
+                <ul style="margin-left: 2rem; color: #8ab;">
+                    <li>Amélioration des performances des voitures</li>
+                    <li>Optimisation des stratégies en course</li>
+                    <li>Prévention des problèmes mécaniques</li>
+                    <li>Prise de décision plus rapide et plus intelligente</li>
+                </ul>
+                <p style="margin-top: 1.5rem; color: #c8d8e8;">
+                    <span class="arrow">👉</span> <span class="highlight">La F1 est aujourd'hui un sport fortement basé sur la technologie et l'analyse de données</span>
+                </p>
+                <p style="margin-top: 1rem; font-style: italic; color: #8ab;">Les écuries qui maîtrisent l'IA et le Big Data ont un avantage compétitif décisif</p>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources-section">
+            <h3><i class="fas fa-link"></i> 🔎 Sources et Références</h3>
+            <ul class="sources-list">
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.fia.com/" target="_blank" rel="noopener noreferrer">FIA – Règlement et Innovations Technologiques</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer">Formule 1 (F1.com) – Données et Fonctionnement des Courses</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.oracle.com/" target="_blank" rel="noopener noreferrer">Oracle – Partenariats avec Red Bull Racing</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.mercedes-amgf1.com/" target="_blank" rel="noopener noreferrer">Mercedes-AMG Petronas Formula One – Technologies et Ingénierie</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://motorsport.com/" target="_blank" rel="noopener noreferrer">Motorsport.com – Articles Spécialisés en F1</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.lequipe.fr/" target="_blank" rel="noopener noreferrer">L'Équipe – Rubrique Formule 1</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://techcrunch.com/" target="_blank" rel="noopener noreferrer">TechCrunch – IA et Sport</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="index.html" class="back-btn" style="margin-bottom: 1rem;">
+                <i class="fas fa-arrow-left"></i> Retour au Portfolio
+            </a>
+            <p style="margin-top: 1rem; color: #4a6a8a; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 1px;">
+                &copy; 2026 Barry Dramane — Veille Technologique BTS SIO SLAM
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

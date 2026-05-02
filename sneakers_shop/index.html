@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneakers Shop - Boutique en ligne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Sneakers Shop</div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#produits">Produits</a></li>
+                <li><a href="#panier">Panier <span class="cart-badge" id="cartBadge">0</span></a></li>
+                <li><a href="#contactez-nous">Contact</a></li>
+                <li><a href="#mentions-legales">Mentions</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Bienvenue sur Sneakers Shop</h1>
+                <h2>Les meilleures sneakers en ligne</h2>
+                <p>Découvrez notre collection de sneakers de qualité.</p>
+                <a href="#produits" class="cv-btn">Voir les produits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produits -->
+    <section id="produits" class="projects">
+        <div class="container">
+            <h2 class="section-title">Nos Produits</h2>
+            <div class="projects-grid" id="productsGrid">
+                <!-- Les produits seront générés par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Détail Produit -->
+    <section id="product-detail" class="product-detail" style="display: none;">
+        <div class="container">
+            <button class="back-btn" id="backBtn">← Retour</button>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img id="detailImage" src="" alt="">
+                </div>
+                <div class="detail-info">
+                    <h1 id="detailName"></h1>
+                    <p id="detailShortDesc" class="short-desc"></p>
+                    <div class="price-section">
+                        <span id="detailPrice" class="price"></span>
+                    </div>
+
+                    <div class="product-details">
+                        <div class="detail-group">
+                            <h3>Couleurs disponibles</h3>
+                            <div id="colorsContainer" class="colors-list"></div>
+                        </div>
+
+                        <div class="detail-group">
+                            <h3>Tailles disponibles</h3>
+                            <div id="sizesContainer" class="sizes-list"></div>
+                        </div>
+                    </div>
+
+                    <div id="detailDescription" class="full-description"></div>
+
+                    <button class="cv-btn add-to-detail-cart" id="addToDetailCart">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panier -->
+    <section id="panier" class="cart-section">
+        <div class="container">
+            <h2 class="section-title">Votre Panier</h2>
+            <div class="cart-content">
+                <div id="emptyCart" class="empty-cart">
+                    <p>Votre panier est vide pour le moment.</p>
+                    <a href="#produits" class="cv-btn">Continuer le shopping</a>
+                </div>
+                <div id="cartItems" class="cart-items" style="display: none;">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartBody">
+                        </tbody>
+                    </table>
+                    <div class="cart-summary">
+                        <div class="summary-item">
+                            <span>Sous-total:</span>
+                            <span id="subtotal">0€</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total:</span>
+                            <span id="total">0€</span>
+                        </div>
+                        <button class="cv-btn checkout-btn">Passer la commande</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="competences">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <p>Pour toute question, contactez-nous à contact@sneakersshop.com</p>
+        </div>
+    </section>
+    <!-- Contactez-nous -->
+    <section id="contactez-nous" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-content">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Votre message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="cv-btn submit-btn">Envoyer <i class="fas fa-paper-plane"></i></button>
+                    <div class="success-msg" id="successMsg">✓ Message envoyé avec succès ! Nous vous recontacterons sous peu.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentions Légales -->
+    <section id="mentions-legales" class="legal-section">
+        <div class="container">
+            <h2 class="section-title">Mentions Légales</h2>
+            <div class="legal-content">
+                <div class="legal-box">
+                    <h3>Responsable du site</h3>
+                    <p>Sneakers Shop | Boutique en ligne<br>
+                    <strong>Email :</strong> <a href="mailto:contact@sneakersshop.com">contact@sneakersshop.com</a></p>
+                </div>
+
+                <div class="legal-box">
+                    <h3>Conditions d'utilisation</h3>
+                    <p>L'accès à ce site est gratuit et sans conditions. Tout utilisateur peut accéder au site et consulter les produits disponibles.</p>
+                </div>
+
+                <div class="legal-box">
+                    <h3>Propriété intellectuelle</h3>
+                    <p>Tous les contenus présents sur ce site (textes, images, logos, etc.) sont la propriété de Sneakers Shop ou de ses partenaires. Toute reproduction, distribution, transmission ou affichage du contenu est interdit sans autorisation écrite préalable.</p>
+                </div>
+
+                <div class="legal-box">
+                    <h3>Données personnelles</h3>
+                    <p>Les données collectées via le formulaire de contact sont utilisées uniquement pour vous répondre. Elles ne seront jamais partagées avec des tiers. Conformément au RGPD, vous disposez d'un droit d'accès et de rectification de vos données.</p>
+                </div>
+
+                <div class="legal-box">
+                    <h3>Limitation de responsabilité</h3>
+                    <p>Sneakers Shop décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation de ce site. Les produits et prix sont sujets à modification sans préavis.</p>
+                </div>
+
+                <div class="legal-box">
+                    <h3>Droit applicable</h3>
+                    <p>Ce site est soumis aux lois de la France. Tout litige sera soumis à la juridiction française compétente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sneakers Shop — Boutique en ligne</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

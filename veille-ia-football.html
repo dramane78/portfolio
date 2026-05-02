@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - IA dans le Football | Barry Dramane</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cyan: #08f3ff;
+            --dark-bg: #06121c;
+            --card-bg: rgba(10, 20, 40, 0.85);
+            --accent: #667eea;
+            --glow: 0 0 20px rgba(8, 243, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.8;
+            color: #ffffff;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(8, 243, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(8, 243, 255, 0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(60px); }
+        .orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(102,126,234,0.12), transparent 70%); top: -100px; right: -100px; animation: floatOrb 8s ease-in-out infinite; }
+        .orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(8,243,255,0.08), transparent 70%); bottom: 200px; left: -80px; animation: floatOrb 11s ease-in-out infinite reverse; }
+
+        @keyframes floatOrb {
+            0%,100% { transform: translate(0,0); }
+            33% { transform: translate(-20px,30px); }
+            66% { transform: translate(15px,-20px); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(6,18,28,0.92);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(8,243,255,0.15);
+            padding-right: 24px;
+        }
+
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; }
+
+        .nav-link { font-family: 'Space Mono', monospace; color: #8ab; font-size: 0.75rem; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
+
+        .nav-link:hover { color: var(--cyan); }
+
+        /* Header */
+        .header {
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .header-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 40%, var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .header-desc { color: #8ab; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Sections */
+        .section {
+            padding: 40px 20px;
+            background: rgba(6, 17, 34, 0.6);
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid rgba(8, 243, 255, 0.1);
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .section-number { font-family: 'Space Mono', monospace; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon { font-size: 1.5rem; }
+
+        .subsection {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(8, 243, 255, 0.04);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            animation: slideIn 0.6s ease both;
+        }
+
+        .subsection h3 {
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .subsection ul { margin-left: 1.5rem; }
+
+        .subsection li {
+            margin-bottom: 0.8rem;
+            color: #c8d8e8;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--cyan);
+            font-weight: 600;
+            padding: 2px 6px;
+            background: rgba(8, 243, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .arrow { color: var(--accent); font-weight: 700; }
+
+        /* Sources */
+        .sources-section {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .sources-section h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .sources-list { list-style: none; }
+
+        .sources-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sources-list a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .sources-list a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(4, 10, 18, 0.95);
+            border-top: 1px solid rgba(8, 243, 255, 0.1);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 4px;
+            color: var(--accent);
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section { padding: 1.5rem; }
+            .subsection { padding: 1rem; }
+            .section-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-link back-btn">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-tag">📚 Veille Technologique</div>
+            <h1 class="header-title">L'Intelligence Artificielle dans le Football</h1>
+            <p class="header-desc">Découvrez comment l'IA transforme le football moderne : analyse de performance, arbitrage assisté et aide à la décision stratégique.</p>
+        </div>
+    </div>
+
+    <!-- Problématique -->
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🎯</span> Problématique</h2>
+            <p style="font-size: 1.1rem; color: #a8bcd0; font-style: italic;">Comment l'intelligence artificielle transforme-t-elle le football moderne ?</p>
+        </div>
+
+        <!-- Définition -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📌</span> Définition</h2>
+            <p style="color: #c8d8e8;">L'<span class="highlight">intelligence artificielle (IA)</span> désigne des technologies capables d'analyser des données, apprendre et prendre des décisions automatiquement. Elle utilise des algorithmes et du machine learning pour traiter des informations complexes.</p>
+        </div>
+
+        <!-- Utilisations -->
+        <div class="section">
+            <div class="section-number">⚙️ 1. Utilisation de l'IA dans le football</div>
+            <h2 class="section-title"><span class="icon">📊</span> Analyse des Performances</h2>
+
+            <div class="subsection">
+                <h3><i class="fas fa-database"></i> Collecte et traitement des données</h3>
+                <ul>
+                    <li>Vitesse de déplacement des joueurs</li>
+                    <li>Distance parcourue par match</li>
+                    <li>Précision des passes et tirs</li>
+                    <li>Positionnement tactique en temps réel</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3><i class="fas fa-chart-line"></i> Analyse des matchs et des joueurs</h3>
+                <ul>
+                    <li>Évaluation de la performance individuelle</li>
+                    <li>Détection des patterns de jeu</li>
+                    <li>Comparaison avec les standards de la ligue</li>
+                    <li>Utilisation par des entreprises comme <span class="highlight">Opta Sports</span> et <span class="highlight">StatsBomb</span></li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> Permet d'<span class="highlight">améliorer la performance</span> et <span class="highlight">prévenir les blessures</span>
+            </p>
+
+            <h2 class="section-title" style="margin-top: 2rem;"><span class="icon">🎥</span> Arbitrage Assisté par l'IA</h2>
+
+            <div class="subsection">
+                <h3><i class="fas fa-video"></i> Technologies déployées</h3>
+                <ul>
+                    <li><span class="highlight">VAR (Video Assisted Review)</span> - Assistance vidéo pour les décisions controversées</li>
+                    <li><span class="highlight">Hors-jeu semi-automatique (SAOT)</span> - Détection automatique basée sur l'IA</li>
+                    <li>Utilisation officielle par la <span class="highlight">FIFA</span></li>
+                    <li>Déploiement lors de la Coupe du Monde 2022</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> Objectif : <span class="highlight">réduire les erreurs humaines</span> et garantir plus de fairplay
+            </p>
+
+            <h2 class="section-title" style="margin-top: 2rem;"><span class="icon">🧠</span> Aide à la Décision (Coaching)</h2>
+
+            <div class="subsection">
+                <h3><i class="fas fa-chess"></i> Stratégie et préparation</h3>
+                <ul>
+                    <li>Analyse approfondie des adversaires</li>
+                    <li>Préparation des stratégies adaptées</li>
+                    <li>Simulation de scénarios tactiques</li>
+                    <li>Recommandations en temps réel pendant les matchs</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 1rem; padding: 1rem; background: rgba(8, 243, 255, 0.08); border-radius: 6px; border-left: 3px solid var(--cyan);">
+                <span class="arrow">👉</span> Le football devient un sport basé sur la <span class="highlight">data-driven decision</span>
+            </p>
+        </div>
+
+        <!-- Enjeux -->
+        <div class="section">
+            <div class="section-number">⚠️ 2. Limites et Enjeux</div>
+            <h2 class="section-title"><span class="icon">🚨</span> Défis Majeurs</h2>
+
+            <div class="subsection" style="border-left-color: var(--cyan);">
+                <h3><i class="fas fa-money-bill"></i> Enjeu Économique</h3>
+                <p>💰 <span class="highlight">Coût élevé des technologies</span> - Les systèmes d'IA premium sont très onéreux</p>
+                <p style="margin-top: 0.5rem;">⚖️ <span class="highlight">Inégalités entre clubs</span> - Seuls les clubs riches peuvent se les permettre</p>
+            </div>
+
+            <div class="subsection" style="border-left-color: var(--accent);">
+                <h3><i class="fas fa-robot"></i> Enjeu Technologique</h3>
+                <p>🤖 <span class="highlight">Dépendance à l'IA</span> - Risque de déléguer trop de responsabilités aux machines</p>
+                <p style="margin-top: 0.5rem;">❗ <span class="highlight">Perte du facteur humain</span> - La créativité et l'intuition des joueurs pourraient être atténuées</p>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🧩</span> Conclusion</h2>
+            <div style="padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(8, 243, 255, 0.1)); border-radius: 8px; border: 1px solid rgba(8, 243, 255, 0.2);">
+                <p style="margin-bottom: 1rem; color: #c8d8e8;">✅ L'IA <span class="highlight">améliore significativement</span> le football moderne :</p>
+                <ul style="margin-left: 2rem; color: #8ab;">
+                    <li>Performance des joueurs et équipes</li>
+                    <li>Fiabilité de l'arbitrage</li>
+                    <li>Stratégies plus intelligentes et adaptées</li>
+                </ul>
+                <p style="margin-top: 1.5rem; color: #c8d8e8;">
+                    <span class="arrow">👉</span> Cependant, l'IA doit rester <span class="highlight">un outil d'aide</span> et non remplacer totalement l'humain
+                </p>
+                <p style="margin-top: 1rem; font-style: italic; color: #8ab;">La meilleure approche : <span class="highlight">synergies homme-machine</span> pour un football plus juste et performant</p>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources-section">
+            <h3><i class="fas fa-link"></i> 🔎 Sources et Références</h3>
+            <ul class="sources-list">
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer">FIFA - Technologies et Arbitrage</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.uefa.com/" target="_blank" rel="noopener noreferrer">UEFA - Innovation Sportive</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.optasports.com/" target="_blank" rel="noopener noreferrer">Opta Sports - Données Sportives</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.statsbomb.com/" target="_blank" rel="noopener noreferrer">StatsBomb - Analyse de Performance</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.lequipe.fr/" target="_blank" rel="noopener noreferrer">L'Équipe - Actualités Sportives</a></li>
+                <li><i class="fas fa-check-circle" style="color: var(--cyan);"></i> <a href="https://www.franceinfo.fr/" target="_blank" rel="noopener noreferrer">France Info - Information Générale</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="index.html" class="back-btn" style="margin-bottom: 1rem;">
+                <i class="fas fa-arrow-left"></i> Retour au Portfolio
+            </a>
+            <p style="margin-top: 1rem; color: #4a6a8a; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 1px;">
+                &copy; 2026 Barry Dramane — Veille Technologique BTS SIO SLAM
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

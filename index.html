@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barry Dramane — Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Orbs décoratifs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">BD.</div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#veille">Veille Technologique</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="profile-pic-wrapper">
+                <img src="photo-profil.JPG" alt="Photo de profil de Barry Dramane" class="profile-pic"
+                     onerror="this.style.display='none';this.parentNode.querySelector('.profile-initials').style.display='flex'">
+                <div class="profile-initials" style="display:none;width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,#667eea,#08f3ff);align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:#06121c;position:relative;z-index:1;">BD</div>
+            </div>
+            <div class="hero-text">
+                <p class="hero-tag">BTS SIO — Option SLAM</p>
+                <h1>Barry Dramane</h1>
+                <h2>Développeur en formation</h2>
+                <p>Étudiant en 2ème année de BTS SIO à IRIS-PARIS</p>
+                <a href="Cv_Dramane_2.pdf" class="cv-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Sneakers Shop</h3>
+                    <p>Boutique en ligne de sneakers avec présentation des produits, panier et responsive design — développée en PHP.</p>
+                    <a href="sneakers_shop/index.html" class="project-tag" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Voir le projet
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>Castellane Autoécole</h3>
+                    <p>Interface frontend d'une autoécole avec pages d'accueil, inscription, authentification et espace membre — développée en HTML, CSS et PHP.</p>
+                    <a href="castellane-autoecole.html" class="project-tag" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Voir le projet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            <p>Je suis étudiant en 2ème année de BTS SIO (Services Informatiques aux Organisations), option SLAM (Solutions Logicielles et Applications Métier), scolarisé à l'IRIS-PARIS. Ce portfolio présente mes compétences, mes formations et mes projets réalisés dans le cadre de mes études et en dehors.</p>
+        </div>
+    </section>
+
+    <!-- Parcours -->
+    <section id="parcours" class="parcours">
+        <div class="container">
+            <h2 class="section-title">Mon Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 — Présent</div>
+                    <h3>BTS SIO — Option SLAM</h3>
+                    <p>IRIS-PARIS · Services Informatiques aux Organisations</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 — 2022</div>
+                    <h3>Baccalauréat STMG</h3>
+                    <p>Lycée Jean Baptiste Poquelin · Diplôme obtenu en 2022</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 — 2019</div>
+                    <h3>Collège Claude Debussy</h3>
+                    <p>Diplôme National du Brevet obtenu en 2019</p>
+                </div>
+            </div>
+
+            <div class="certifications-section">
+                <h3>Mes Certifications &amp; Formations</h3>
+                <p>Documents obtenus dans le cadre du BTS SIO</p>
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <h3>SQL</h3>
+                        <p class="cert-date">2026</p>
+                        <p class="cert-description">Conception, normalisation et optimisation de bases de données relationnelles.</p>
+                        <p class="cert-link"><a href="dramane_1.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le document</a></p>
+                    </div>
+                    <div class="certification-card">
+                        <h3>Langage C</h3>
+                        <p class="cert-date">2026</p>
+                        <p class="cert-description">Développement bas niveau en C, gestion mémoire et structures de données.</p>
+                        <p class="cert-link"><a href="dramane_2.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le document</a></p>
+                    </div>
+                    <div class="certification-card">
+                        <h3>WordPress 6</h3>
+                        <p class="cert-date">2026</p>
+                        <p class="cert-description">Création et personnalisation de sites WordPress 6, développement de thèmes et SEO.</p>
+                        <p class="cert-link"><a href="dramene_3.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le document</a></p>
+                    </div>
+                    <div class="certification-card">
+                        <h3>Python</h3>
+                        <p class="cert-date">2026</p>
+                        <p class="cert-description">Scripting avancé, data science et automatisation avec Python.</p>
+                        <p class="cert-link"><a href="dramane_4.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Voir le document</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="competences">
+        <div class="container">
+            <h2 class="section-title">Mes Compétences</h2>
+            <p class="competences-intro">Langages et technologies maîtrisés</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon-text">🌐</span>
+                    <h3>HTML5</h3>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon-text">🎨</span>
+                    <h3>CSS3</h3>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon-text">⚡</span>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon-text">🐘</span>
+                    <h3>PHP</h3>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon-text">🗄️</span>
+                    <h3>SQL</h3>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon-text">🐍</span>
+                    <h3>Python</h3>
+                </div>
+            </div>
+
+            <div class="tableau-excel-section">
+                <h3>Tableau détaillé de mes compétences</h3>
+                <div class="tableau-preview">
+                    <img src="tableau_competences_capture.png" alt="Tableau des compétences BTS SIO" class="tableau-image">
+                </div>
+                <div class="tableau-downloads">
+                    <a href="tableau-full.html" target="_blank" class="download-btn">
+                        <i class="fas fa-image"></i> Afficher l'image
+                    </a>
+                    <a href="tableau_competences_bts_sio.xlsx" download class="download-btn">
+                        <i class="fas fa-file-excel"></i> Télécharger Excel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Veille Technologique -->
+    <section id="veille" class="veille-tech">
+        <div class="container">
+            <h2 class="section-title">Veille Technologique</h2>
+            <p class="competences-intro">Technologies et tendances suivies</p>
+            <p class="veille-intro">Je suis particulièrement intéressé par les applications innovantes de l'intelligence artificielle et du machine learning dans des domaines concrets et en évolution. Ma veille porte sur la façon dont l'IA transforme les secteurs traditionnels et crée de nouvelles opportunités. Le football en est un excellent exemple : découvrez comment l'IA révolutionne l'analyse tactique, l'arbitrage et la performance des équipes.</p>
+            <div class="veille-grid">
+                <div class="veille-card veille-card-large">
+                    <div class="veille-icon">⚽</div>
+                    <h3>IA dans le Football</h3>
+                    <p>Application de l'IA et du machine learning pour l'analyse tactique, évaluation des performances, prédictions et optimisation des stratégies d'équipe.</p>
+                    <div class="veille-tags">
+                        <span class="tag">ML Football</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Analytics</span>
+                    </div>
+                    <a href="veille-ia-football.html" class="veille-btn" target="_blank">
+                        <i class="fas fa-arrow-right"></i> Lire la fiche complète
+                    </a>
+                </div>
+                <div class="veille-card veille-card-large">
+                    <div class="veille-icon">🏎️</div>
+                    <h3>IA et Big Data en Formule 1</h3>
+                    <p>Comment l'intelligence artificielle et le Big Data permettent d'optimiser les performances en F1 : collecte de données, stratégies en temps réel et analyse des pilotes.</p>
+                    <div class="veille-tags">
+                        <span class="tag">Big Data</span>
+                        <span class="tag">IA Temps Réel</span>
+                        <span class="tag">F1</span>
+                    </div>
+                    <a href="veille-f1-ia.html" class="veille-btn" target="_blank">
+                        <i class="fas fa-arrow-right"></i> Lire la fiche complète
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <form class="contact-form" id="contactForm"
+                  action="https://formsubmit.co/drabarry12@gmail.com"
+                  method="POST">
+                <input type="hidden" name="_subject" value="Nouveau message depuis ton portfolio !">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://formsubmit.co/confirm">
+                <input type="text" name="name" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre email" required>
+                <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+                <button type="submit">Envoyer <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Barry Dramane — Portfolio BTS SIO SLAM</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
