@@ -1,2 +1,8 @@
-projet_autoecole/fix_password.php
-*.env
+bin/  
+src/  
+lib/  
+.classpath  
+.project  
+.settings/  
+.claude/  
+gen_word.ps1 
