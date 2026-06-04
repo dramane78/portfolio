@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS admin (
 INSERT IGNORE INTO admin (login, mot_de_passe, nom, prenom)
 VALUES ('admin', '$2y$10$vCorbZ86b8rI7bTBpBpzZOW2x44JIuWtD.kM77yJHWW2E.dwNVaqW', 'Administrateur', 'Castellane');
 
--- Colonnes pour l'espace élève (ignorées si déjà présentes)
+-- Colonnes pour l'espace élève
 ALTER TABLE candidat
-    ADD COLUMN IF NOT EXISTS login VARCHAR(100) DEFAULT NULL,
-    ADD COLUMN IF NOT EXISTS mot_de_passe VARCHAR(255) DEFAULT NULL;
+    ADD COLUMN login VARCHAR(100) DEFAULT NULL,
+    ADD COLUMN mot_de_passe VARCHAR(255) DEFAULT NULL;
