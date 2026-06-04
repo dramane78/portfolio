@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(curl -s http://localhost/projet_autoecole/ -o /dev/null -w \"%{http_code}\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(php -r \"echo password_hash\\('admin123', PASSWORD_DEFAULT\\);\")"
+    ]
+  }
+}
